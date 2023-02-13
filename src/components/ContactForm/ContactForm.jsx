@@ -1,13 +1,22 @@
-import {use}
-import {Form, Label, Input, Button} from './ContactForm.styled'
-import PropTypes from 'prop-types';
+import { Form, Label, Input, Button} from './ContactForm.styled'
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addContacts } from '../../redux/reducer'
+import PropTypes from 'prop-types';
 
-export function ContactForm ({onSubmit}){
+export function ContactForm (){
   const[name, setName] =useState('')
-  const[number, setNumber] =useState('')
+  const [number, setNumber] = useState('')
+  const dispatch = useDispatch();
 
-   const handelInputChange = (e) => {
+const handleSubmit = event => {
+    event.preventDefault();
+    dispatch(addContacts(name, number));
+    reset();
+  };
+
+
+const handelInputChange = (e) => {
     switch (e.currentTarget.name) {
       case 'name':
         setName(e.currentTarget.value)
@@ -20,19 +29,13 @@ export function ContactForm ({onSubmit}){
       default:
         console.log("Бедося у тебя с руками")
     }}
-    
-    const  handlerAddContact = (e) => {
-    e.preventDefault()
-         onSubmit({name,number});
-         reset()
-    }
-    
+         
    const reset = () => {
      setName('')
      setNumber('')
     }
     
-    return (<Form onSubmit={handlerAddContact}>
+    return (<Form onSubmit={handleSubmit}>
           <Label htmlFor="" > Name
             <Input
               type="text"

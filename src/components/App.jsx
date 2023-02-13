@@ -1,54 +1,55 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import { ContactList } from "./ContactList/ContactList";
 import {ContactForm} from 'components/ContactForm/ContactForm'
 import {FilterForm} from './FilterForm/FilterForm'
 import { Wrapper, Title, TitleContacts } from './App.styled'
 import { useSelector } from "react-redux";
-
+import {getcontacts} from '../redux/selectors'
 import PropTypes from 'prop-types';
-
-
-const shortid = require('shortid');
-const LS_KEY = 'contact_info';
+// const shortid = require('shortid');
+// const LS_KEY = 'contact_info';
 
 export function App() {
-  const [contacts, setContacts] = useState(() => {return JSON.parse(localStorage.getItem(LS_KEY)) ?? [] })
-  const [filter, setFilter] = useState('')
+  
+  // const [contacts, setContacts] = useState(() => {return JSON.parse(localStorage.getItem(LS_KEY)) ?? [] })
+  // const [filter, setFilter] = useState('')
 
-  useEffect(() => {
-        localStorage.setItem(LS_KEY, JSON.stringify(contacts))
-  }, [contacts])
+  const contacts = useSelector(getcontacts)
+
+
+  // useEffect(() => {
+  //       localStorage.setItem(LS_KEY, JSON.stringify(contacts))
+  // }, [contacts])
   
-  const handelFormSbmit = ( {name, number} ) => {
-     const isNameInContacts = contacts.find(contact => contact.name.toLowerCase() ===  name.toLowerCase().trim() )
-     if(isNameInContacts){
-    alert(`${name} is already in contacts`)
-     } else {
-       setContacts(state => {      
-         return ([...contacts, { id: shortid.generate(), name, number }])
-       })
-     }
-  }
+  // const handelFormSbmit = ( {name, number} ) => {
+  //    const isNameInContacts = contacts.find(contact => contact.name.toLowerCase() ===  name.toLowerCase().trim() )
+  //    if(isNameInContacts){
+  //   alert(`${name} is already in contacts`)
+  //    } else {
+  //      setContacts(state => {      
+  //        return ([...contacts, { id: shortid.generate(), name, number }])
+  //      })
+  //    }
+  // }
   
-  const filterContact = (e) => {
-       setFilter(e.currentTarget.value)
-  }
+  // const filterContact = (e) => {
+  //      setFilter(e.currentTarget.value)
+  // }
   
-  const deleteContact = id => {
-    setContacts(state => (contacts.filter(contact => contact.id !== id)))
-  }
+  // const deleteContact = id => {
+  //   setContacts(state => (contacts.filter(contact => contact.id !== id)))
+  // }
   
-  const filterNormalise = filter.toLowerCase().trim()
-  const filterElemens = contacts.filter(contact => contact.name.toLowerCase().includes(filterNormalise))
-  console.log(contacts)
+  // const filterNormalise = filter.toLowerCase().trim()
+  // const filterElemens = contacts.filter(contact => contact.name.toLowerCase().includes(filterNormalise))
   
   return (
         <Wrapper>
         <Title>Phonebook</Title>
-        <ContactForm onSubmit={handelFormSbmit} />
+        <ContactForm />
         <TitleContacts>Contacts</TitleContacts>      
-        <FilterForm value={filter} onChange={filterContact } />
-        <ContactList contactsList={filterElemens} onDeleteContact={deleteContact} />
+        <FilterForm />
+        <ContactList/>
         </Wrapper>
   )    
 }
@@ -68,3 +69,6 @@ App.propTypes = {
     };
 
 
+// {/* <FilterForm value={filter} onChange={filterContact} />
+//   <ContactList contactsList={filterElemens} onDeleteContact={deleteContact} /> */}
+  // <ContactList contactsList={filterElemens}  />
