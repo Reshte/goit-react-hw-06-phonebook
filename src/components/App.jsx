@@ -3,6 +3,8 @@ import { ContactList } from "./ContactList/ContactList";
 import {ContactForm} from 'components/ContactForm/ContactForm'
 import {FilterForm} from './FilterForm/FilterForm'
 import { Wrapper, Title, TitleContacts } from './App.styled'
+import { useSelector } from "react-redux";
+
 import PropTypes from 'prop-types';
 
 
@@ -10,7 +12,7 @@ const shortid = require('shortid');
 const LS_KEY = 'contact_info';
 
 export function App() {
-  const [contacts, setContacts] = useState(() => { return JSON.parse(localStorage.getItem(LS_KEY)) ?? [] })
+  const [contacts, setContacts] = useState(() => {return JSON.parse(localStorage.getItem(LS_KEY)) ?? [] })
   const [filter, setFilter] = useState('')
 
   useEffect(() => {
@@ -38,6 +40,7 @@ export function App() {
   
   const filterNormalise = filter.toLowerCase().trim()
   const filterElemens = contacts.filter(contact => contact.name.toLowerCase().includes(filterNormalise))
+  console.log(contacts)
   
   return (
         <Wrapper>
