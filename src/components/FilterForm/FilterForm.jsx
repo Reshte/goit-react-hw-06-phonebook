@@ -1,11 +1,19 @@
 import { PropTypes } from 'prop-types';
-import {Input, Label, Wrapper} from './FilterForm.styled'
+import { Input, Label, Wrapper } from './FilterForm.styled'
+import { useDispatch } from 'react-redux';
+import { setFilter } from '../../redux/filterSlice'
 
-export const FilterForm = ({ value, onChange }) => {
+
+export const FilterForm = () => {
+    const dispatch = useDispatch()
+    
+    const onChange = (e) => {
+        dispatch(setFilter(e.currentTarget.value.toLowerCase().trim()))
+           }
        return (
         <Wrapper>
             <Label htmlFor="">Find contacts name
-                <Input type="text" value={value} onChange={onChange} />
+                <Input type="text"  onChange={onChange} />
             </Label>
         </Wrapper>
     )
@@ -15,3 +23,4 @@ FilterForm.proptype ={
     value:PropTypes.array,
     onChange:PropTypes.func,
 }
+

@@ -1,10 +1,10 @@
 // import React, { useState, useEffect } from "react";
 import { ContactList } from "./ContactList/ContactList";
-import {ContactForm} from 'components/ContactForm/ContactForm'
-import {FilterForm} from './FilterForm/FilterForm'
+import { ContactForm } from 'components/ContactForm/ContactForm'
+import { FilterForm } from './FilterForm/FilterForm'
 import { Wrapper, Title, TitleContacts } from './App.styled'
-import { useSelector } from "react-redux";
-import {getcontacts} from '../redux/selectors'
+// import { useSelector } from "react-redux";
+// import {getcontacts} from '../redux/selectors'
 import PropTypes from 'prop-types';
 // const shortid = require('shortid');
 // const LS_KEY = 'contact_info';
@@ -14,7 +14,7 @@ export function App() {
   // const [contacts, setContacts] = useState(() => {return JSON.parse(localStorage.getItem(LS_KEY)) ?? [] })
   // const [filter, setFilter] = useState('')
 
-  const contacts = useSelector(getcontacts)
+  // const contacts = useSelector(getcontacts)
 
 
   // useEffect(() => {
