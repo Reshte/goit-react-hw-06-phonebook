@@ -3,15 +3,23 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addContacts } from '../../redux/contactsSlice'
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { getcontacts } from 'redux/selectors';
 
 export function ContactForm (){
   const [name, setName] =useState('')
   const [number, setNumber] = useState('')
   const dispatch = useDispatch();
-
+  const contacts = useSelector(getcontacts)
+  
 const handleSubmit = event => {
-    event.preventDefault();
-    dispatch(addContacts(name, number));
+  event.preventDefault();
+  const isNameInContacts = contacts.find(contact => contact.name.toLowerCase() ===  name.toLowerCase().trim() )
+  if (isNameInContacts) {
+    alert(`${name} is already in contacts`)
+  } else {
+    dispatch(addContacts(name, number))
+  }
     reset();
   };
 

@@ -6,17 +6,17 @@ import { getcontacts } from '../../redux/selectors'
 import { getFilter } from '../../redux/selectors'
 
 const getVisibleContacts = (contacts, filter) => {
-    contacts.filter(({name})=> name.toLowerCase().includes(filter))};
+    if (filter.length > 0) { return contacts.filter(({ name }) => name.toLowerCase().includes(filter)) }
+    return contacts;
+    };
 
 export const ContactList = () => {
     const contacts = useSelector(getcontacts)
-     const filter = useSelector(getFilter);
-    console.dir(filter)
-    
-      const visibleContacts = getVisibleContacts(contacts, filter)
-           return ( 
+    const filter = useSelector(getFilter);    
+    const visibleContacts = getVisibleContacts(contacts, filter)
+            return ( 
             <List>
-                   {contacts.map(({ id, name, number }) => (
+                   {visibleContacts.map(({ id, name, number }) => (
                        <ContactListItem key={id} id={id} name={name} number={number}/>))}
             </List> )
 }

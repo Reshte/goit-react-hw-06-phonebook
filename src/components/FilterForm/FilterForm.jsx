@@ -8,7 +8,7 @@ export const FilterForm = () => {
     const dispatch = useDispatch()
     
     const onChange = (e) => {
-                dispatch(setFilter(e.currentTarget.value.trim()))
+                dispatch(setFilter(e.currentTarget.value.toLowerCase().trim()))
            }
        return (
         <Wrapper>
