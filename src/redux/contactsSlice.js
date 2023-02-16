@@ -29,6 +29,3 @@ const contactsSlice = createSlice({
 export const { addContacts, deleteContact, filterContacts } =
   contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
-
-// const filterNormalise = filter.toLowerCase().trim()
-// const filterElemens = contacts.filter(contact => contact.name.toLowerCase().includes(filterNormalise))
