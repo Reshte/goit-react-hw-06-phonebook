@@ -14,10 +14,10 @@ export const ContactList = () => {
     const contacts = useSelector(getcontacts)
     const filter = useSelector(getFilter);    
     const visibleContacts = getVisibleContacts(contacts, filter)
-    console.log(visibleContacts)
+    console.log(contacts)
             return ( 
             <List>
-                   {contacts.map(({ id, name, number }) => (
+                   {visibleContacts.map(({ id, name, number }) => (
                        <ContactListItem key={id} id={id} name={name} number={number}/>))}
             </List> )
 }
