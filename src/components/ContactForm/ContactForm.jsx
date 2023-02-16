@@ -2,13 +2,13 @@ import { Form, Label, Input, Button} from './ContactForm.styled'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addContacts } from '../../redux/contactsSlice'
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { getcontacts } from 'redux/selectors';
 
-export function ContactForm (){
+export function ContactForm () {
   const [name, setName] =useState('')
   const [number, setNumber] = useState('')
+
   const dispatch = useDispatch();
   const contacts = useSelector(getcontacts)
   
@@ -70,11 +70,3 @@ const handelInputChange = (e) => {
 
 }
 
-ContactForm.proptype = {
-  name: PropTypes.string,
-  number: PropTypes.string,
-
-  handelInputChange: PropTypes.func,
-  handlerAddContact: PropTypes.func,
-  reset:PropTypes.func,  
-}

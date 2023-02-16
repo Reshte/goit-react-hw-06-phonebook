@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { ContactListItem } from './ContactListItem/ContactListItem'
 import { List } from './ContactList.styled'
 import { useSelector } from "react-redux";
@@ -22,7 +21,3 @@ export const ContactList = () => {
             </List> )
 }
 
-ContactList.proptype ={
-    contactsList:PropTypes.array,
-    onDeleteContact:PropTypes.func,
-}

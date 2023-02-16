@@ -1,4 +1,3 @@
-import { PropTypes } from 'prop-types';
 import { Input, Label, Wrapper } from './FilterForm.styled'
 import { useDispatch } from 'react-redux';
 import { setFilter } from '../../redux/filterSlice'
@@ -19,8 +18,4 @@ export const FilterForm = () => {
     )
 }
 
-FilterForm.proptype ={
-    value:PropTypes.array,
-    onChange:PropTypes.func,
-}
 
