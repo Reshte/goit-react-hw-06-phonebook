@@ -5,8 +5,9 @@ import { addContacts } from '../../redux/reducer'
 import PropTypes from 'prop-types';
 
 export function ContactForm (){
-  const[name, setName] =useState('')
+  const [name, setName] =useState('')
   const [number, setNumber] = useState('')
+  
   const dispatch = useDispatch();
 
 const handleSubmit = event => {
